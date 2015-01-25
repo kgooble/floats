@@ -56,6 +56,10 @@ public class CharacterMovement : MonoBehaviour {
 	}
 
 	void Update () {
+		// Can't do anything when dead!
+		if (state == State.DEAD) {
+			return;
+		}
 		if (Input.GetButton ("Jump") && (state == State.STILL)) {
 			jumpForce = Mathf.Min ((Time.time - startJumpingTime) * jumpPowerScale, maxJumpForce);
 			SetState (State.GOING_UP);
